@@ -1,0 +1,32 @@
+<keyboards>
+    <keyboard name="laptop">
+        <row position="2">
+            <key>
+                <id>0</id>
+                <position>0</position>
+                <width>0.5</width>
+                <hand>left</hand>
+                <finger>p</finger>
+                <effort>6</effort>
+            </key>
+
+            <key>
+                <id>1</id>
+                <position>1</position>
+                <width>1</width>
+            <hand>left</hand>
+            <finger>p</finger>
+            <effort>5</effort>
+            </key>
+
+            <key>
+                <id>2</id>
+                <position>2</position>
+                <width>1</width>
+                <hand>left</hand>
+                <finger>r</finger>
+                <effort>4.5</effort>
+            </key>
+        </row>
+    </keyboard>
+</keyboards>

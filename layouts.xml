@@ -1,0 +1,143 @@
+<layouts>
+
+<layout name="qwertz" keyboard="laptop">
+    <layer layer_name="base" effort="1">
+            <!-- Number row-->
+        <symbol value="^"     key="0"/>
+        <symbol value="1"     key="1"/>
+        <symbol value="2"     key="2"/>
+        <symbol value="3"     key="3"/>
+        <symbol value="4"     key="4"/>
+        <symbol value="5"     key="5"/>
+        <symbol value="6"     key="6"/>
+        <symbol value="7"     key="7"/>
+        <symbol value="8"     key="8"/>
+        <symbol value="9"     key="9"/>
+        <symbol value="0"     key="10"/>
+        <symbol value="ß"     key="11"/>
+        <symbol value="grav"  key="12"/>
+        <symbol value="bs"    key="13"/>
+        
+        <!--  Top row-->
+        <symbol value="tab"   key="14"/>
+        <symbol value="q"     key="15"/>
+        <symbol value="w"     key="16"/>
+        <symbol value="e"     key="17"/>
+        <symbol value="r"     key="18"/>
+        <symbol value="t"     key="19"/>
+        <symbol value="z"     key="20"/>
+        <symbol value="u"     key="21"/>
+        <symbol value="i"     key="22"/>
+        <symbol value="o"     key="23"/>
+        <symbol value="p"     key="24"/>
+        <symbol value="ü"     key="25"/>
+        <symbol value="+"     key="26"/>
+        
+        <!-- Home row-->
+        <symbol value="caps"  key="27"/>
+        <symbol value="a"     key="28"/>
+        <symbol value="s"     key="29"/>
+        <symbol value="d"     key="30"/>
+        <symbol value="f"     key="31"/>
+        <symbol value="g"     key="32"/>
+        <symbol value="h"     key="33"/>
+        <symbol value="j"     key="34"/>
+        <symbol value="k"     key="35"/>
+        <symbol value="l"     key="36"/>
+        <symbol value="ö"     key="37"/>
+        <symbol value="ä"     key="38"/>
+        <symbol value="#"     key="39"/>
+        <symbol value="ret"   key="40"/>
+        
+        <!-- bottom row-->
+        <symbol value="lsh"   key="41"/>
+        <symbol value="less"  key="42"/> <!-- less than "<"-->
+        <symbol value="y"     key="43"/>
+        <symbol value="x"     key="44"/>
+        <symbol value="c"     key="45"/>
+        <symbol value="v"     key="46"/>
+        <symbol value="b"     key="47"/>
+        <symbol value="n"     key="48"/>
+        <symbol value="m"     key="49"/>
+        <symbol value=","     key="50"/>
+        <symbol value="."     key="51"/>
+        <symbol value="-"     key="52"/>
+        <symbol value="rsh"   key="53"/>
+        
+        <!-- space row-->
+        <symbol value="lrct"  key="54"/>
+        <symbol value="fn"    key="55"/>
+        <symbol value="win"   key="56"/>
+        <symbol value="lalt"  key="57"/>
+        <symbol value="spac"  key="58"/>
+        <symbol value="altg"  key="59"/>
+        <symbol value="rctl"  key="60"/>
+        <symbol value="pgup"  key="61"/>
+        <symbol value="up"    key="62"/>
+        <symbol value="pgdn"  key="63"/>
+        
+        <!-- 3 arrows row-->
+        <symbol value="left"  key="64"/>
+        <symbol value="down"  key="65"/>
+        <symbol value="righ"  key="66"/>
+    </layer>
+    
+    <layer layer_name="shift" effort="2">
+        <!-- Number row-->
+        <symbol value="°"     key="0"/>
+        <symbol value="!"     key="1"/>
+        <symbol value="quo"     key="2"/>
+        <symbol value="§"     key="3"/>
+        <symbol value="$"     key="4"/>
+        <symbol value="%"     key="5"/>
+        <symbol value="amp"     key="6"/>
+        <symbol value="/"     key="7"/>
+        <symbol value="("     key="8"/>
+        <symbol value=")"     key="9"/>
+        <symbol value="="     key="10"/>
+        <symbol value="?"     key="11"/>
+        <symbol value="`"     key="12"/>
+        
+        <!--  Top row-->
+        <symbol value="Q"     key="15"/>
+        <symbol value="W"     key="16"/>
+        <symbol value="E"     key="17"/>
+        <symbol value="R"     key="18"/>
+        <symbol value="T"     key="19"/>
+        <symbol value="Z"     key="20"/>
+        <symbol value="U"     key="21"/>
+        <symbol value="I"     key="22"/>
+        <symbol value="O"     key="23"/>
+        <symbol value="P"     key="24"/>
+        <symbol value="Ü"     key="25"/>
+        <symbol value="*"     key="26"/>
+        
+        <!-- Home row-->
+        <symbol value="A"     key="28"/>
+        <symbol value="S"     key="29"/>
+        <symbol value="D"     key="30"/>
+        <symbol value="F"     key="31"/>
+        <symbol value="G"     key="32"/>
+        <symbol value="H"     key="33"/>
+        <symbol value="J"     key="34"/>
+        <symbol value="K"     key="35"/>
+        <symbol value="L"     key="36"/>
+        <symbol value="Ö"     key="37"/>
+        <symbol value="Ä"     key="38"/>
+        <symbol value="'"     key="39"/>
+        
+        <!-- bottom row-->
+        <symbol value="grea"  key="42"/> <!-- greater than ">"-->
+        <symbol value="Y"     key="43"/>
+        <symbol value="X"     key="44"/>
+        <symbol value="C"     key="45"/>
+        <symbol value="V"     key="46"/>
+        <symbol value="B"     key="47"/>
+        <symbol value="N"     key="48"/>
+        <symbol value="M"     key="49"/>
+        <symbol value=";"     key="50"/>
+        <symbol value=":"     key="51"/>
+        <symbol value="_"     key="52"/>
+    </layer>
+</layout>
+</layouts>
