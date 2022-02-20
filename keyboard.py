@@ -9,6 +9,7 @@ class Key:
         self.finger     = ""
         self.effort     = 0.0
         self.pressed    = 0
+        self.pressedPerc= 0
         self.symbols    = []
         self.row        = row
     def parse(self, element):
@@ -36,6 +37,8 @@ class Key:
             s+="____"
         elif layer == "pressed":
             s+= f"{self.pressed:4}"
+        elif layer == "pressedPerc":
+            s+= f"{(self.pressedPerc*100):4.1f}"
         else:
             try:
                 s+= f"{list(filter(lambda x: x.layerName == layer, self.symbols))[0].value:4}"
@@ -89,16 +92,32 @@ class Keyboard:
         except:
             return None
     def press(self, s):
-        self.symboldict[s].key.pressed +=1
+        symbol = self.symboldict[s]
+        symbol.key.pressed +=1
         try:
-            self.symboldict[s].layerShiftKey.pressed+=1
+            symbol.layerShiftKey.pressed+=1
         except:
             pass
+        return symbol.key.finger, symbol.key.hand
+
     def totalEffort(self):
         return sum([x.effort*x.pressed for x in self.keys])/self.totalPressed()
+
     def totalPressed(self):
         return sum([x.pressed for x in self.keys])
     
+    def leftRightHand(self):
+        right = sum(x.pressed for x in filter(lambda x: x.hand=="r",self.keys))
+        left = self.totalPressed() - right
+        return left,right
+    def leftRightHandPercent(self):
+        left, right = self.leftRightHand()
+        total = self.totalPressed()
+        return left/total, right/total   
+    def calcPressedPercent(self):
+        total = self.totalPressed()
+        for k in self.keys:
+            k.pressedPerc = k.pressed/total
 class Symbol:
     def __init__(self) -> None:
         self.value = ""
