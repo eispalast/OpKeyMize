@@ -28,5 +28,25 @@
                 <effort>4.5</effort>
             </key>
         </row>
+        <row position="1"> 
+            <key>
+                <id>14</id>
+                <position>0</position>
+                <width>1.25</width>
+                <hand>left</hand>
+                <finger>p</finger>
+                <effort>3</effort>
+            </key>
+        </row>
+        <row position="0"> 
+            <key>
+                <id>27</id>
+                <position>0</position>
+                <width>1.5</width>
+                <hand>left</hand>
+                <finger>p</finger>
+                <effort>2.5</effort>
+            </key>
+        </row>
     </keyboard>
 </keyboards>
