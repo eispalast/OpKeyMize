@@ -5,7 +5,7 @@
                 <id>0</id>
                 <position>0</position>
                 <width>0.5</width>
-                <hand>left</hand>
+                <hand>l</hand>
                 <finger>p</finger>
                 <effort>6</effort>
             </key>
@@ -14,7 +14,7 @@
                 <id>1</id>
                 <position>1</position>
                 <width>1</width>
-            <hand>left</hand>
+            <hand>l</hand>
             <finger>p</finger>
             <effort>5</effort>
             </key>
@@ -23,9 +23,107 @@
                 <id>2</id>
                 <position>2</position>
                 <width>1</width>
-                <hand>left</hand>
+                <hand>l</hand>
                 <finger>r</finger>
                 <effort>4.5</effort>
+            </key>
+
+            <key>
+                <id>3</id>
+                <position>3</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>m</finger>
+                <effort>3.5</effort>
+            </key>
+
+            <key>
+                <id>4</id>
+                <position>4</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>4</effort>
+            </key>
+
+            <key>
+                <id>5</id>
+                <position>5</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>3</effort>
+            </key>
+            <key>
+                <id>6</id>
+                <position>6</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>7</id>
+                <position>7</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>4</effort>
+            </key>
+            
+            <key>
+                <id>8</id>
+                <position>8</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>3.5</effort>
+            </key>
+
+            <key>
+                <id>9</id>
+                <position>9</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>4</effort>
+            </key>
+
+            <key>
+                <id>10</id>
+                <position>10</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>r</finger>
+                <effort>4</effort>
+            </key>
+
+            <key>
+                <id>11</id>
+                <position>11</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>5</effort>
+            </key>
+
+            <key>
+                <id>12</id>
+                <position>12</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>5</effort>
+            </key>
+
+            <key>
+                <id>13</id>
+                <position>13</position>
+                <width>1.75</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>6</effort>
             </key>
         </row>
         <row position="1"> 
@@ -33,9 +131,114 @@
                 <id>14</id>
                 <position>0</position>
                 <width>1.25</width>
-                <hand>left</hand>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>15</id>
+                <position>1</position>
+                <width>1</width>
+                <hand>l</hand>
                 <finger>p</finger>
                 <effort>3</effort>
+            </key>
+
+            <key>
+                <id>16</id>
+                <position>2</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>r</finger>
+                <effort>2</effort>
+            </key>
+            <key>
+                <id>17</id>
+                <position>3</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>m</finger>
+                <effort>2</effort>
+            </key>
+            <key>
+                <id>18</id>
+                <position>4</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>2.5</effort>
+            </key>
+            <key>
+                <id>19</id>
+                <position>5</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>2</effort>
+            </key>
+
+            <key>
+                <id>20</id>
+                <position>6</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>3</effort>
+            </key>
+
+            <key>
+                <id>21</id>
+                <position>7</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>2</effort>
+            </key>
+
+            <key>
+                <id>22</id>
+                <position>8</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>1.5</effort>
+            </key>
+
+            <key>
+                <id>23</id>
+                <position>9</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>r</finger>
+                <effort>2</effort>
+            </key>
+
+            <key>
+                <id>24</id>
+                <position>10</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>3</effort>
+            </key>
+            
+            <key>
+                <id>25</id>
+                <position>11</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>26</id>
+                <position>12</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>4.5</effort>
             </key>
         </row>
         <row position="0"> 
@@ -43,10 +246,324 @@
                 <id>27</id>
                 <position>0</position>
                 <width>1.5</width>
-                <hand>left</hand>
+                <hand>l</hand>
                 <finger>p</finger>
                 <effort>2.5</effort>
             </key>
+            <key>
+                <id>28</id>
+                <position>1</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>1.5</effort>
+            </key>
+            <key>
+                <id>29</id>
+                <position>2</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>r</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>30</id>
+                <position>3</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>m</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>31</id>
+                <position>4</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>32</id>
+                <position>5</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>1.5</effort>
+            </key>
+            <key>
+                <id>33</id>
+                <position>6</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>1.5</effort>
+            </key>
+            <key>
+                <id>34</id>
+                <position>7</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>35</id>
+                <position>8</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>36</id>
+                <position>9</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>r</finger>
+                <effort>1</effort>
+            </key>
+            <key>
+                <id>37</id>
+                <position>10</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>1.5</effort>
+            </key>
+            <key>
+                <id>38</id>
+                <position>11</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>2.5</effort>
+            </key>
+            <key>
+                <id>39</id>
+                <position>12</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>3.5</effort>
+            </key>
+            <key>
+                <id>40</id>
+                <position>13</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>5</effort>
+            </key>
+        </row>
+        <row position="-1">
+            <key>
+                <id>41</id>
+                <position>0</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>4</effort>
+            </key>
+            <key>
+                <id>42</id>
+                <position>1</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>3</effort>
+            </key>
+            <key>
+                <id>43</id>
+                <position>2</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>44</id>
+                <position>3</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>r</finger>
+                <effort>4</effort>
+            </key>
+            
+            <key>
+                <id>45</id>
+                <position>4</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>m</finger>
+                <effort>4</effort>
+            </key>
+            
+            <key>
+                <id>46</id>
+                <position>5</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>2</effort>
+            </key>
+            
+            <key>
+                <id>47</id>
+                <position>6</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>i</finger>
+                <effort>2.5</effort>
+            </key>
+            
+            <key>
+                <id>48</id>
+                <position>7</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>2</effort>
+            </key>
+            
+            <key>
+                <id>49</id>
+                <position>8</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>1.5</effort>
+            </key>
+            
+            <key>
+                <id>50</id>
+                <position>9</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>2</effort>
+            </key>
+            
+            <key>
+                <id>51</id>
+                <position>10</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>r</finger>
+                <effort>2.5</effort>
+            </key>
+            
+            <key>
+                <id>52</id>
+                <position>11</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>3</effort>
+            </key>
+            
+            <key>
+                <id>53</id>
+                <position>12</position>
+                <width>2.25</width>
+                <hand>r</hand>
+                <finger>p</finger>
+                <effort>4</effort>
+            </key>
+            
+        </row>
+        <row position="-2">
+            <key>
+                <id>54</id>
+                <position>0</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>55</id>
+                <position>1</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>p</finger>
+                <effort>3</effort>
+            </key>
+            
+            <key>
+                <id>56</id>
+                <position>2</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>r</finger>
+                <effort>4</effort>
+            </key>
+            
+            <key>
+                <id>57</id>
+                <position>3</position>
+                <width>1</width>
+                <hand>l</hand>
+                <finger>m</finger>
+                <effort>3.5</effort>
+            </key>
+            
+            <key>
+                <id>58</id>
+                <position>4</position>
+                <width>5</width>
+                <hand>r</hand>
+                <finger>t</finger>
+                <effort>1</effort>
+            </key>
+            
+            <key>
+                <id>59</id>
+                <position>5</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>t</finger>
+                <effort>3</effort>
+            </key>
+            
+            <key>
+                <id>60</id>
+                <position>6</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>3</effort>
+            </key>
+            
+            <key>
+                <id>61</id>
+                <position>7</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>i</finger>
+                <effort>5</effort>
+            </key>
+            
+            <key>
+                <id>62</id>
+                <position>8</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>m</finger>
+                <effort>5</effort>
+            </key>
+            
+            <key>
+                <id>63</id>
+                <position>9</position>
+                <width>1</width>
+                <hand>r</hand>
+                <finger>r</finger>
+                <effort>5</effort>
+            </key>
+            
+            
         </row>
     </keyboard>
 </keyboards>

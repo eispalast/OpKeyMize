@@ -15,7 +15,7 @@
         <symbol value="9"     key="9"/>
         <symbol value="0"     key="10"/>
         <symbol value="ß"     key="11"/>
-        <symbol value="grav"  key="12"/>
+        <symbol value="´"  key="12"/>
         <symbol value="bs"    key="13"/>
         
         <!--  Top row-->
@@ -51,7 +51,7 @@
         
         <!-- bottom row-->
         <symbol value="lsh"   key="41"/>
-        <symbol value="less"  key="42"/> <!-- less than "<"-->
+        <symbol value="&lt;"  key="42"/> <!-- less than "<"-->
         <symbol value="y"     key="43"/>
         <symbol value="x"     key="44"/>
         <symbol value="c"     key="45"/>
@@ -82,15 +82,15 @@
         <symbol value="righ"  key="66"/>
     </layer>
     
-    <layer layer_name="shift" effort="2">
+    <layer layer_name="shift" effort="2" layer_shift_key="41">
         <!-- Number row-->
         <symbol value="°"     key="0"/>
         <symbol value="!"     key="1"/>
-        <symbol value="quo"     key="2"/>
+        <symbol value="&quot;" key="2"/>
         <symbol value="§"     key="3"/>
         <symbol value="$"     key="4"/>
         <symbol value="%"     key="5"/>
-        <symbol value="amp"     key="6"/>
+        <symbol value="&amp;"     key="6"/>
         <symbol value="/"     key="7"/>
         <symbol value="("     key="8"/>
         <symbol value=")"     key="9"/>
@@ -124,10 +124,10 @@
         <symbol value="L"     key="36"/>
         <symbol value="Ö"     key="37"/>
         <symbol value="Ä"     key="38"/>
-        <symbol value="'"     key="39"/>
+        <symbol value="&apos;" key="39"/>
         
         <!-- bottom row-->
-        <symbol value="grea"  key="42"/> <!-- greater than ">"-->
+        <symbol value="&gt;"  key="42"/> <!-- greater than ">"-->
         <symbol value="Y"     key="43"/>
         <symbol value="X"     key="44"/>
         <symbol value="C"     key="45"/>
