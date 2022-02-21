@@ -98,6 +98,15 @@ class Keyboard:
             return list(filter(lambda x: x.id==keyID, self.keys))[0]
         except:
             return None
+    
+    def getLayers(self):
+        layers = []
+        for s in self.symbols:
+            l = s.layerName
+            if not l in layers:
+                layers.append(l)
+        return layers
+    
     def press(self, s):
         symbol = self.symboldict[s]
         symbol.key.pressed +=1
@@ -106,6 +115,7 @@ class Keyboard:
         except:
             pass
         return symbol.key.finger, symbol.key.hand
+        
 
     def totalEffort(self):
         return sum([x.effort*x.pressed for x in self.keys])/self.totalPressed()

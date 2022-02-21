@@ -84,11 +84,10 @@ def main(argv):
     print(f"Left hand: {left}%.   Right hand: {right}%.")
     if GUI:
         app = App()
-        kbView = KeyboardView(app)
-        allRows=keyboard.getAllRows()
         for id, row in enumerate(keyboard.getAllRows()):
-            kbView.addRow(position=id,keys=row)
-        kbView.showLabels(["id","effort"])
+            app.kbView.addRow(position=id,keys=row)
+        app.add_layer_names(keyboard.getLayers())
+        app.kbView.color_by_percent()
         app.mainloop()
 
 if __name__ == "__main__":

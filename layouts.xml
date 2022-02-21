@@ -139,5 +139,25 @@
         <symbol value=":"     key="51"/>
         <symbol value="_"     key="52"/>
     </layer>
+    <layer layer_name="AltGr" effort="2" layer_shift_key="59">
+            <!-- Number row-->
+            <symbol value="²"     key="2"/>
+            <symbol value="³"     key="3"/>
+            <symbol value="{"     key="7"/>
+            <symbol value="["     key="8"/>
+            <symbol value="]"     key="9"/>
+            <symbol value="}"     key="10"/>
+            <symbol value="\"     key="11"/>
+            
+            <!--  Top row-->
+            <symbol value="@"     key="15"/>
+            <symbol value="€"     key="17"/>
+            <symbol value="~"     key="26"/>
+            
+            
+            <!-- bottom row-->
+            <symbol value="|"  key="42"/> <!-- less than "<"-->
+            <symbol value="µ"     key="49"/>
+    </layer>
 </layout>
 </layouts>

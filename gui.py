@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 from turtle import bgcolor
 from unittest import TestCase
 from keyboard import Key
@@ -16,6 +17,40 @@ class App(tk.Tk):
         self.title("optiKey")
         self.geometry('1800x800+50+50')
         self.iconbitmap("ok_logo.ico")
+        self.layer_checkboxes = []
+        self.kbView = self.new_keyboard()
+        self.layers = {}
+        self.initLayers()
+    
+    def initLayers(self):
+        self.layers = {}
+        self.add_layer_names(["id","effort","pressed","pressedPerc"])
+
+    def layer_checkbox_pressed(self):
+        active_layers= []
+        for layer, var in self.layers.items():
+            if var.get()=="1":
+                active_layers.append(layer)
+        self.kbView.change_labels(active_layers)        
+
+    def draw_layer_choice(self):
+        for layer, var in self.layers.items():
+            if layer in self.layer_checkboxes:
+                continue
+            layer_checkbox = ttk.Checkbutton(self,text=layer,command=self.layer_checkbox_pressed,variable=var)
+            layer_checkbox.pack()
+            self.layer_checkboxes.append(layer)
+    
+    def new_keyboard(self):
+        return KeyboardView(self)
+        
+    
+    def add_layer_names(self,new_layers):
+        for layer in new_layers:
+            if layer in self.layers:
+                continue
+            self.layers[layer]=tk.StringVar()    
+        self.draw_layer_choice()
 
 
 
@@ -34,6 +69,9 @@ class KeyView(tk.Button):
         self["borderwidth"]=0
         self.key=key
         self.bind('<Button>',self.change_color)
+        self.labels = ["id"]
+        
+    
     def change_color(self,event):
         current_color=str(self["bg"])
         if current_color != "blue":
@@ -41,12 +79,33 @@ class KeyView(tk.Button):
         else:
             self["bg"]="grey"
         print(self["bg"])
-    def show_label(self,layers=["id"]):
+    
+    def change_labels(self,layers=["id"]):
+        self.labels = layers
+        self.show_labels()
+
+    def show_labels(self):
         t=""
-        for layer in layers:
+        for layer in self.labels:
             t+=f"{(self.key.layoutString(layer))[1:].lstrip()}\n"
         self["text"]=t
-    
+
+    def color_by_percent(self):
+        scaled_up = self.key.pressedPerc*800
+        if scaled_up< 50:
+            g = 230
+            r = int(scaled_up*230/50)
+        else:
+            r = 230
+            g = int((100-scaled_up)*230/50)
+        #r = int(255*self.key.pressedPerc*6)
+        #g = 255-r
+        rhex= ("00"+hex(r)[2:].lstrip('x'))[-2:]
+        ghex= ("00"+hex(g)[2:].lstrip('x'))[-2:]
+        color=f"#{rhex}{ghex}2A"
+        #if self.key.pressedPerc < 0.01:
+        #    color="#c4c4c4"
+        self["bg"]=color
         
 # main kb view
 class KeyBoardRowView(tk.Canvas):
@@ -83,6 +142,7 @@ class KeyboardView(tk.Canvas):
         self.pack()
         self.rows = []
         #self.grid(row=0,column=0,sticky="e")
+        
     
     def addRow(self,keys, position):
         print(self["height"])
@@ -91,11 +151,15 @@ class KeyboardView(tk.Canvas):
         row.place(y=position*110,x=0)
         self.rows.append(row)
     
-    def showLabels(self,layers=["id"]):
+    def change_labels(self,layers=["id"]):
         for row in self.rows:
             for k in row.keys:
-                k.show_label(layers)
+                k.change_labels(layers)
 
+    def color_by_percent(self):
+        for row in self.rows:
+            for k in row.keys:
+                k.color_by_percent()
 
 #if __name__ == "__main__":
 #    app = App()
