@@ -1,6 +1,6 @@
 <keyboards>
     <keyboard name="laptop">
-        <row position="2">
+        <row position="0">
             <key>
                 <id>0</id>
                 <position>0</position>
@@ -241,7 +241,7 @@
                 <effort>4.5</effort>
             </key>
         </row>
-        <row position="0"> 
+        <row position="2"> 
             <key>
                 <id>27</id>
                 <position>0</position>
@@ -355,7 +355,7 @@
                 <effort>5</effort>
             </key>
         </row>
-        <row position="-1">
+        <row position="3">
             <key>
                 <id>41</id>
                 <position>0</position>
@@ -472,7 +472,7 @@
             </key>
             
         </row>
-        <row position="-2">
+        <row position="4">
             <key>
                 <id>54</id>
                 <position>0</position>

@@ -3,8 +3,10 @@ from keyboard import Keyboard, Key, Symbol
 import sys 
 import getopt
 import io
+from gui import App, KeyboardView
 
 DEBUGGING = False
+GUI = True
 SHOW_LAYERS = ["base"]
 def printHelp():
     print("Hilfe")
@@ -15,9 +17,9 @@ def parseInputs(argv):
     keyboardFile = "keyboards.xml"
     corpus = "corpus.txt"
     try:
-        opts, args = getopt.getopt(argv,"hdl:K:L:c:s:",["layout=","keyboardfile=","layoutfile=","corpus=","showlayers="])
+        opts, args = getopt.getopt(argv,"hdgl:K:L:c:s:",["layout=","keyboardfile=","layoutfile=","corpus=","showlayers="])
     except:
-        print("Usage: python optiKey.py -l <layoutname>")
+        print("Usage: fail: python optiKey.py -l <layoutname>")
         print("For more help, type python optiKey.py -h")
         sys.exit()
         
@@ -28,6 +30,9 @@ def parseInputs(argv):
         elif opt == "-d":
             global DEBUGGING 
             DEBUGGING = True
+        elif opt == "-g":
+            global GUI
+            GUI = True
         elif opt in ("-l", "--layout"):
             layoutName = arg
         elif opt in ("-L", "--layoutfile"):
@@ -70,12 +75,21 @@ def main(argv):
     if DEBUGGING:
         print(keyboard.layoutString(layers=SHOW_LAYERS))
         print(keyboardFile, layoutFile, layoutName)
-
+    
     print("total effort: ",keyboard.totalEffort())
     print("total presses: ", keyboard.totalPressed())
     print("alternating hands: ", alternatingHands/keyboard.totalPressed())
     print("same finger: ", sameFinger/keyboard.totalPressed())
     left, right =keyboard.leftRightHandPercent()
     print(f"Left hand: {left}%.   Right hand: {right}%.")
+    if GUI:
+        app = App()
+        kbView = KeyboardView(app)
+        allRows=keyboard.getAllRows()
+        for id, row in enumerate(keyboard.getAllRows()):
+            kbView.addRow(position=id,keys=row)
+        kbView.showLabels(["id","effort"])
+        app.mainloop()
+
 if __name__ == "__main__":
     main(sys.argv[1:])

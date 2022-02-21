@@ -72,7 +72,7 @@ class Keyboard:
         s += "Keys: \n"
         layers = ["bottom","null","null"]+layers+["null","bottom"]
         minRow, maxRow = self.getMinMaxRow()
-        for rowID in range(maxRow,minRow-1,-1):
+        for rowID in range(minRow,maxRow+1):
             row = self.getRow(rowID)
             for layer in layers:
                 for k in row:
@@ -85,6 +85,13 @@ class Keyboard:
 
     def getRow(self, rowID):
         return list(sorted(filter(lambda x: x.row == rowID,self.keys),key=lambda x: x.position))
+    
+    def getAllRows(self):
+        min,max=self.getMinMaxRow()
+        allRows = []
+        for i in range(min,max+1):
+            allRows.append(self.getRow(i))
+        return allRows
 
     def getKey(self, keyID):
         try:
