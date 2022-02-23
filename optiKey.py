@@ -4,9 +4,10 @@ import sys
 import getopt
 import io
 from gui import App, KeyboardView
+from analyzer import Analyzer
 
 DEBUGGING = False
-GUI = True
+GUI = True 
 SHOW_LAYERS = ["base"]
 def printHelp():
     print("Hilfe")
@@ -50,36 +51,17 @@ def parseInputs(argv):
 def main(argv):
     layoutName, layoutFile, keyboardFile, corpus = parseInputs(argv)
     keyboard = parseLayout(layoutName,layoutFile,keyboardFile)
-    alternatingHands = 0
-    sameFinger = 0
-
-    with io.open(corpus,"r",encoding="utf-8") as f:
-        text = f.read()
-        prevS=text[0]
-        prevFinger, prevHand = keyboard.press(prevS)
-
-        for s in text[1:]:
-            finger, hand = keyboard.press(s)
-
-            # Calculate alternating hands
-            if prevHand != hand:
-                alternatingHands += 1
-            elif prevFinger == finger and prevS != s:
-                # same finger on same hand, but not a double on the same key
-                sameFinger +=1
-            
-            prevFinger = finger
-            prevHand = hand
-            prevS = s
-    keyboard.calcPressedPercent()
+    analyzer = Analyzer(corpus,keyboard)
+    analyzer.options["noSpace"] = True
+    analyzer.testAll()
     if DEBUGGING:
         print(keyboard.layoutString(layers=SHOW_LAYERS))
         print(keyboardFile, layoutFile, layoutName)
     
-    print("total effort: ",keyboard.totalEffort())
-    print("total presses: ", keyboard.totalPressed())
-    print("alternating hands: ", alternatingHands/keyboard.totalPressed())
-    print("same finger: ", sameFinger/keyboard.totalPressed())
+    print("total effort: ",analyzer.totalEffort)
+    print("total presses: ", analyzer.totalPressed)
+    print("alternating hands: ", analyzer.alternatingHands/analyzer.totalPressed)
+    print("same finger: ", analyzer.sameFinger/analyzer.totalPressed)
     left, right =keyboard.leftRightHandPercent()
     print(f"Left hand: {left}%.   Right hand: {right}%.")
     if GUI:
