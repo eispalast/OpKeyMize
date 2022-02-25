@@ -51,7 +51,39 @@ class Key:
                 else:
                     s += "_"
         return s
+    
+    def getValueAtLabel(self, layer):
+        if layer == "id":
+            return f"{self.id}"
+        elif layer == "effort":
+            return f"{self.effort}"
+        else:
+            s = self.symbolOnLayer(layer)
+            if s != None:
+                return s.value
+            else:
+                return ""
 
+    def symbolOnLayer(self,layer):
+        for s in self.symbols:
+            if s.layerName == layer:
+                return s
+        else:
+            return None 
+
+    def set(self, layerValues):
+        for key, value in layerValues.items():
+            if key == "id":
+                self.id = int(value)
+            elif key == "effort":
+                self.effort = float(value.replace(",","."))
+            else:
+                s = self.symbolOnLayer(key)
+                if s == None:
+                    s = Symbol()
+                    s.layerName = key
+                    s.key = self
+                s.value = value
 
 class Keyboard:
     def __init__(self,name) -> None:
@@ -65,6 +97,15 @@ class Keyboard:
         if not key in self.keys:
             self.keys.append(key)
     
+    def refreshSymbolDict(self):
+        self.symboldict = {}
+        for k in self.keys:
+            for sym in k.symbols:
+                self.symboldict[sym.value]=sym
+                if sym.value == "spac":
+                    self.symboldict[" "]=sym
+                elif sym.value == "ret":
+                    self.symboldict["\n"]=sym
     def layoutString(self,layers=["id"],compact=False):
         s = f"Keybord name: {self.name}\n"
         s += f"Layout name: {self.layoutName}\n"
@@ -101,10 +142,11 @@ class Keyboard:
     
     def getLayers(self):
         layers = []
-        for s in self.symbols:
-            l = s.layerName
-            if not l in layers:
-                layers.append(l)
+        for k in self.keys:
+            for s in k.symbols:
+                l = s.layerName
+                if not l in layers:
+                    layers.append(l)
         return layers
     
     def press(self, s):
@@ -116,7 +158,11 @@ class Keyboard:
             pass
         return symbol.key.finger, symbol.key.hand
         
-
+    def resetPresses(self):
+        for k in self.keys:
+            k.pressed = 0
+            k.pressedPerc = 0.0
+            
     def totalEffort(self):
         return sum([x.effort*x.pressed for x in self.keys])/self.totalPressed()
 
@@ -127,14 +173,17 @@ class Keyboard:
         right = sum(x.pressed for x in filter(lambda x: x.hand=="r",self.keys))
         left = self.totalPressed() - right
         return left,right
+    
     def leftRightHandPercent(self):
         left, right = self.leftRightHand()
         total = self.totalPressed()
         return left/total, right/total   
+    
     def calcPressedPercent(self):
         total = self.totalPressed()
         for k in self.keys:
             k.pressedPerc = k.pressed/total
+
 class Symbol:
     def __init__(self) -> None:
         self.value = ""

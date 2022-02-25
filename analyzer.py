@@ -8,7 +8,15 @@ class Analyzer():
         self.options = {"noSpace":False}
         self.alternatingHands = 0
         self.sameFinger = 0
- 
+        self.leftHand = 0
+        self.rightHand = 0
+        
+    def printResults(self):
+        print("total effort: ",self.totalEffort)
+        print("total presses: ", self.totalPressed)
+        print("alternating hands: ", self.alternatingHands/self.totalPressed)
+        print("same finger: ", self.sameFinger/self.totalPressed)
+
     @property
     def totalPressed(self):
         return self.keyboard.totalPressed()
@@ -18,12 +26,16 @@ class Analyzer():
         return self.keyboard.totalEffort()
 
     def testAll(self):
+        self.keyboard.resetPresses()
         self.alternatingHands = 0
         self.sameFinger = 0
+        self.leftHand = 0
+        self.rightHand = 0
 
         with io.open(self.corpus,"r",encoding="utf-8") as f:
             text = f.read()
             prevS=text[0]
+            self.keyboard.refreshSymbolDict()
             prevFinger, prevHand = self.keyboard.press(prevS)
 
             for s in text[1:]:

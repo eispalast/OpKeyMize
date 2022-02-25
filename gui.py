@@ -11,17 +11,33 @@ except:
     pass
 
 class App(tk.Tk):
-    def __init__(self) -> None:
+    def __init__(self,analyzer) -> None:
         super().__init__()
+        self.analyzer = analyzer
         ttk.Label(self,text="Eyo, captain jack").pack()
-        self.title("optiKey")
+        self.title("OpKeyMize")
         self.geometry('1800x800+50+50')
         self.iconbitmap("ok_logo.ico")
         self.layer_checkboxes = []
         self.kbView = self.new_keyboard()
         self.layers = {}
         self.initLayers()
+        self.initKb()
+        ttk.Button(self,text="Analyze",command=self.analyze).pack()
     
+
+    def analyze(self):
+        self.analyzer.testAll()
+        self.kbView.color_by_percent()
+        self.analyzer.printResults()
+
+    def initKb(self):
+        for id, row in enumerate(self.analyzer.keyboard.getAllRows()):
+            self.kbView.addRow(position=id,keys=row)
+        self.add_layer_names(self.analyzer.keyboard.getLayers())
+        self.kbView.color_by_percent()
+
+
     def initLayers(self):
         self.layers = {}
         self.add_layer_names(["id","effort","pressed","pressedPerc"])
@@ -57,6 +73,56 @@ class App(tk.Tk):
 # control elements (save, open, ...)
 
 
+class ButtonOptionWindow(tk.Toplevel):
+    def __init__(self, master,key:Key):
+        super().__init__(master)
+        self.key = key
+        self.title("Key options")
+        self.geometry("400x400+50+50")
+        ttk.Label(self, text="Layer").grid(row=0,column=0)
+        ttk.Label(self, text="Value").grid(row=1,column=0)
+        self.selectedLayer = tk.StringVar(self)
+        self.prevSelectedLayer = tk.StringVar(self)
+        self.currentValue = tk.StringVar(self)
+        self.labelValues = {}
+        self.createLayerSelect()
+        self.createValueSelect()
+        ttk.Button(self,text="OK",command=self.saveChanges).grid(row=2,column=0)
+        ttk.Button(self,text="Cancel",command=self.destroy).grid(row=2,column=1)
+
+    def createLayerSelect(self):
+        self.prevSelectedLayer.set("id")
+        option_menu = ttk.OptionMenu(
+            self,
+            self.selectedLayer,
+            "id",
+            *list(self.master.master.master.master.layers.keys()),
+            command=self.layerChanged)
+        option_menu.grid(row=0,column=1)
+    
+    def createValueSelect(self):
+        self.currentValue.set(self.key.id)
+        entry = ttk.Entry(self, textvariable=self.currentValue)
+        entry.grid(row=1, column=1)
+
+    def layerChanged(self,*args):
+        self.labelValues[self.prevSelectedLayer.get()]=self.currentValue.get()
+        self.prevSelectedLayer.set(self.selectedLayer.get())
+        print(self.labelValues)
+
+        # try to get value that was just recently set
+        try:
+            self.currentValue.set(self.labelValues[self.selectedLayer.get()])
+        except:
+            self.currentValue.set(self.key.getValueAtLabel(self.selectedLayer.get()))
+        pass
+
+    def saveChanges(self):
+        self.labelValues[self.selectedLayer.get()]=self.currentValue.get()
+        print(self.labelValues)
+        self.key.set(self.labelValues)
+        self.destroy()
+
 class KeyView(tk.Button):
     def __init__(self, master, text, bg,fg, width,key:Key) -> None:
         super().__init__(master)
@@ -68,17 +134,13 @@ class KeyView(tk.Button):
         self["relief"]="solid"
         self["borderwidth"]=0
         self.key=key
-        self.bind('<Button>',self.change_color)
+        self.bind('<Button>',self.open_options)
         self.labels = ["id"]
         
     
-    def change_color(self,event):
-        current_color=str(self["bg"])
-        if current_color != "blue":
-            self["bg"]="blue"
-        else:
-            self["bg"]="grey"
-        print(self["bg"])
+    def open_options(self,event):
+        ButtonOptionWindow(self,self.key)
+        
     
     def change_labels(self,layers=["id"]):
         self.labels = layers

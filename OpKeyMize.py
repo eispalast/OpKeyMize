@@ -58,18 +58,11 @@ def main(argv):
         print(keyboard.layoutString(layers=SHOW_LAYERS))
         print(keyboardFile, layoutFile, layoutName)
     
-    print("total effort: ",analyzer.totalEffort)
-    print("total presses: ", analyzer.totalPressed)
-    print("alternating hands: ", analyzer.alternatingHands/analyzer.totalPressed)
-    print("same finger: ", analyzer.sameFinger/analyzer.totalPressed)
+    analyzer.printResults()
     left, right =keyboard.leftRightHandPercent()
     print(f"Left hand: {left}%.   Right hand: {right}%.")
     if GUI:
-        app = App()
-        for id, row in enumerate(keyboard.getAllRows()):
-            app.kbView.addRow(position=id,keys=row)
-        app.add_layer_names(keyboard.getLayers())
-        app.kbView.color_by_percent()
+        app = App(analyzer)
         app.mainloop()
 
 if __name__ == "__main__":
