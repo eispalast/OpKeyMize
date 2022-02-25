@@ -14,9 +14,9 @@ def printHelp():
 
 def parseInputs(argv):
     layoutName = "qwertz"
-    layoutFile= "layouts.xml"
-    keyboardFile = "keyboards.xml"
-    corpus = "corpus.txt"
+    layoutFile= "inputFiles/layouts.xml"
+    keyboardFile = "inputFiles/keyboards.xml"
+    corpus = "inputFiles/corpus.txt"
     try:
         opts, args = getopt.getopt(argv,"hdgl:K:L:c:s:",["layout=","keyboardfile=","layoutfile=","corpus=","showlayers="])
     except:

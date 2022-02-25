@@ -1,3 +1,5 @@
 probe.py
 corpus.txt
 werther.txt
+
+__pycache__/

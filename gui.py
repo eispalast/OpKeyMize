@@ -17,7 +17,7 @@ class App(tk.Tk):
         ttk.Label(self,text="Eyo, captain jack").pack()
         self.title("OpKeyMize")
         self.geometry('1800x800+50+50')
-        self.iconbitmap("ok_logo.ico")
+        self.iconbitmap("assets/ok_logo.ico")
         self.layer_checkboxes = []
         self.kbView = self.new_keyboard()
         self.layers = {}
