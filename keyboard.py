@@ -57,6 +57,10 @@ class Key:
             return f"{self.id}"
         elif layer == "effort":
             return f"{self.effort}"
+        elif layer == "hand":
+            return self.hand
+        elif layer == "finger":
+            return self.finger
         else:
             s = self.symbolOnLayer(layer)
             if s != None:
@@ -77,6 +81,19 @@ class Key:
                 self.id = int(value)
             elif key == "effort":
                 self.effort = float(value.replace(",","."))
+            elif key == "hand":
+                h = value[0].lower()
+                if h not in ["r","l"]:
+                    # default value to get around errors. TODO: can be handled better (show error in gui) 
+                    self.hand = "l"
+                self.hand = h
+
+            elif key == "finger":
+                f = value[0].lower()
+                if f not in ["i","m","r","p","t"]:
+                    f = "i"
+                self.finger = f
+                
             else:
                 s = self.symbolOnLayer(key)
                 if s == None:

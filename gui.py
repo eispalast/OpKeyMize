@@ -14,16 +14,19 @@ class App(tk.Tk):
     def __init__(self,analyzer) -> None:
         super().__init__()
         self.analyzer = analyzer
-        ttk.Label(self,text="Eyo, captain jack").pack()
+        ttk.Label(self,text=f"{self.analyzer.keyboard.layoutName} on {self.analyzer.keyboard.name}").pack()
         self.title("OpKeyMize")
         self.geometry('1800x800+50+50')
         self.iconbitmap("assets/ok_logo.ico")
         self.layer_checkboxes = []
         self.kbView = self.new_keyboard()
+        
+        self.optionsView = OptionsView(self)
+
         self.layers = {}
         self.initLayers()
         self.initKb()
-        ttk.Button(self,text="Analyze",command=self.analyze).pack()
+        ttk.Button(self.optionsView,text="Analyze",command=self.analyze).grid(column=1,row=1)
     
 
     def analyze(self):
@@ -50,12 +53,15 @@ class App(tk.Tk):
         self.kbView.change_labels(active_layers)        
 
     def draw_layer_choice(self):
+        self.optionsView.destroy()
+        self.optionsView = OptionsView(self)
+        pos = 1
+        self.layer_checkboxes = []
         for layer, var in self.layers.items():
-            if layer in self.layer_checkboxes:
-                continue
-            layer_checkbox = ttk.Checkbutton(self,text=layer,command=self.layer_checkbox_pressed,variable=var)
-            layer_checkbox.pack()
+            layer_checkbox = ttk.Checkbutton(self.optionsView,text=layer,command=self.layer_checkbox_pressed,variable=var)
+            layer_checkbox.grid(row=pos,column=0,sticky="w")
             self.layer_checkboxes.append(layer)
+            pos += 1
     
     def new_keyboard(self):
         return KeyboardView(self)
@@ -69,7 +75,12 @@ class App(tk.Tk):
         self.draw_layer_choice()
 
 
-
+class OptionsView(ttk.Frame):
+    def __init__(self,master):
+        super().__init__(master)
+        self.pack()
+        ttk.Label(master=self,text="Toggle layer visibility").grid(row=0,column=0)
+        ttk.Label(master=self,text="Actions").grid(row=0,column=1)
 # control elements (save, open, ...)
 
 
@@ -92,11 +103,13 @@ class ButtonOptionWindow(tk.Toplevel):
 
     def createLayerSelect(self):
         self.prevSelectedLayer.set("id")
+        options = [x for x in list(self.master.master.master.master.layers.keys()) if x not in ["pressed", "pressedPerc"]]
+        options+=["hand","finger"]
         option_menu = ttk.OptionMenu(
             self,
             self.selectedLayer,
             "id",
-            *list(self.master.master.master.master.layers.keys()),
+            *options,
             command=self.layerChanged)
         option_menu.grid(row=0,column=1)
     

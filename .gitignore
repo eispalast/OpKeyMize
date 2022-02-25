@@ -1,5 +1,5 @@
 probe.py
-corpus.txt
+inputFiles/corpus.txt
 werther.txt
 
 __pycache__/
