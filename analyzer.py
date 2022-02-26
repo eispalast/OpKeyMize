@@ -25,6 +25,9 @@ class Analyzer():
     def totalEffort(self):
         return self.keyboard.totalEffort()
 
+    def getLeftRightPercent(self):
+        return self.keyboard.leftRightHandPercent()
+
     def testAll(self):
         self.keyboard.resetPresses()
         self.alternatingHands = 0
