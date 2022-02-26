@@ -15,7 +15,7 @@ class Analyzer():
         print("total effort: ",self.totalEffort)
         print("total presses: ", self.totalPressed)
         print("alternating hands: ", self.alternatingHands/self.totalPressed)
-        print("same finger: ", self.sameFinger/self.totalPressed)
+        print("collisions: ", self.sameFinger/self.totalPressed)
 
     @property
     def totalPressed(self):

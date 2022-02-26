@@ -10,7 +10,7 @@ def parseLayout(layoutName="qwertz",pathToLayouts="layouts.xml",keyboardFile="ke
         if layoutName == l.attrib["name"]:
             layout = l
             break
-    if layout == None:
+    if layout is None:
         raise Exception("No such layout")
     kb = parseBoard(layout.attrib["keyboard"],pathToKeyboards=keyboardFile)
     kb.layoutName = layoutName
@@ -30,7 +30,7 @@ def parseLayout(layoutName="qwertz",pathToLayouts="layouts.xml",keyboardFile="ke
             sym.layerName= layerName
             sym.layerShiftKey = layerShiftKey
             sym.parse(symbol)
-            if key != None:
+            if key is not None:
                 key.symbols.append(sym)
                 sym.key = key
                 symbols.append(sym)
@@ -50,7 +50,7 @@ def parseBoard(keyboardName="laptop",pathToKeyboards="keyboards.xml"):
         if k.attrib["name"] == keyboardName:
             keyboard = k
             break
-    if keyboard == None:
+    if keyboard is None:
         raise Exception("No such keyboard")
     kb = Keyboard(keyboardName)
     for r in keyboard.findall("row"):

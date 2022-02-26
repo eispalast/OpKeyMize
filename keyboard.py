@@ -12,6 +12,17 @@ class Key:
         self.pressedPerc= 0
         self.symbols    = []
         self.row        = row
+
+    def __eq__(self, __o: object) -> bool:
+        if self.id != __o.id:
+            return False
+        if len(self.symbols)!= len (__o.symbols):
+            return False
+        for s in self.symbols:
+            if not s in __o.symbols:
+                return False
+        return True
+
     def parse(self, element):
         self.id         = int(element.find("id").text)
         self.position   = int(element.find("position").text)
@@ -63,7 +74,7 @@ class Key:
             return self.finger
         else:
             s = self.symbolOnLayer(layer)
-            if s != None:
+            if s is not None:
                 return s.value
             else:
                 return ""
@@ -96,7 +107,7 @@ class Key:
                 
             else:
                 s = self.symbolOnLayer(key)
-                if s == None:
+                if s is None:
                     s = Symbol()
                     s.layerName = key
                     s.key = self
@@ -211,6 +222,8 @@ class Symbol:
         self.additionalEffort = 1.0
         self.layerName = ""
 
+    def __eq__(self, __o: object) -> bool:
+        return self.value == __o.value and self.layerName == __o.layerName
     def parse(self, element):
         self.value = element.attrib["value"]
         try: 
