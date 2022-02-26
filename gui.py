@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter.messagebox import showinfo
 from turtle import bgcolor
 from unittest import TestCase
+
+from pyparsing import anyOpenTag
 from keyboard import Key
 try:
     from ctypes import windll
@@ -16,23 +18,27 @@ class App(tk.Tk):
         self.analyzer = analyzer
         ttk.Label(self,text=f"{self.analyzer.keyboard.layoutName} on {self.analyzer.keyboard.name}").pack()
         self.title("OpKeyMize")
-        self.geometry('1800x800+50+50')
+        self.geometry('1800x1000+50+50')
         self.iconbitmap("assets/ok_logo.ico")
         self.layer_checkboxes = []
         self.kbView = self.new_keyboard()
         
         self.optionsView = OptionsView(self)
-
         self.layers = {}
         self.initLayers()
         self.initKb()
         ttk.Button(self.optionsView,text="Analyze",command=self.analyze).grid(column=1,row=1)
+        self.showResults()
     
 
     def analyze(self):
         self.analyzer.testAll()
         self.kbView.color_by_percent()
         self.analyzer.printResults()
+        self.showResults()
+
+    def showResults(self):
+        self.optionsView.updateResults(self.analyzer)
 
     def initKb(self):
         for id, row in enumerate(self.analyzer.keyboard.getAllRows()):
@@ -78,9 +84,35 @@ class App(tk.Tk):
 class OptionsView(ttk.Frame):
     def __init__(self,master):
         super().__init__(master)
-        self.pack()
+        self.pack(fill="x")
         ttk.Label(master=self,text="Toggle layer visibility").grid(row=0,column=0)
         ttk.Label(master=self,text="Actions").grid(row=0,column=1)
+        
+
+        ttk.Label(master=self,text="Results").grid(row=0,column=2,columnspan=2)
+        ttk.Label(self,text="Total effort: ").grid(row=1,column=2,sticky="W")
+        self.totalEffort = ttk.Label(self,text="0")
+        self.totalEffort.grid(column=3,row=1)
+
+        ttk.Label(self,text="Alternating Hands: ").grid(row=2,column=2, sticky="W")
+        self.alternatingHands = ttk.Label(self,text="0")
+        self.alternatingHands.grid(column=3,row=2)
+        
+        ttk.Label(self,text="Left/Right Hand: ").grid(row=3,column=2, sticky="W")
+        self.leftRightHand = ttk.Label(self,text="0")
+        self.leftRightHand.grid(column=3,row=3)
+        
+        ttk.Label(self,text="Collision: ").grid(row=4,column=2, sticky="W")
+        self.collisions = ttk.Label(self,text="0")
+        self.collisions.grid(column=3,row=4)
+
+    def updateResults(self,analyzer):
+        self.totalEffort["text"] = f"{analyzer.totalEffort:.2f}"
+        self.alternatingHands["text"] = f"{analyzer.alternatingHands/analyzer.totalPressed:.2f}%"
+        left, right = analyzer.getLeftRightPercent()
+        self.leftRightHand["text"] = f"{left:.2f}%/{right:.2f}%"
+        self.collisions["text"] = f"{(analyzer.sameFinger/analyzer.totalPressed):.4f}%"
+
 # control elements (save, open, ...)
 
 
