@@ -7,7 +7,7 @@ class Analyzer():
         self.keyboard = keyboard
         self.options = {"noSpace":False}
         self.alternatingHands = 0
-        self.sameFinger = 0
+        self.collisions = 0
         self.leftHand = 0
         self.rightHand = 0
         
@@ -15,7 +15,7 @@ class Analyzer():
         print("total effort: ",self.totalEffort)
         print("total presses: ", self.totalPressed)
         print("alternating hands: ", self.alternatingHands/self.totalPressed)
-        print("collisions: ", self.sameFinger/self.totalPressed)
+        print("collisions: ", self.collisions/self.totalPressed)
 
     @property
     def totalPressed(self):
@@ -31,7 +31,7 @@ class Analyzer():
     def testAll(self):
         self.keyboard.resetPresses()
         self.alternatingHands = 0
-        self.sameFinger = 0
+        self.collisions = 0
         self.leftHand = 0
         self.rightHand = 0
 
@@ -46,13 +46,17 @@ class Analyzer():
                     continue
 
                 finger, hand = self.keyboard.press(s)
+                if hand == "r":
+                    self.rightHand += 1
+                else:
+                    self.leftHand += 1
 
                 # Calculate alternating hands
                 if prevHand != hand:
                     self.alternatingHands += 1
                 elif prevFinger == finger and prevS != s:
                     # same finger on same hand, but not a double on the same key
-                    self.sameFinger +=1
+                    self.collisions +=1
 
                 prevFinger = finger
                 prevHand = hand

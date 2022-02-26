@@ -111,7 +111,7 @@ class OptionsView(ttk.Frame):
         self.alternatingHands["text"] = f"{analyzer.alternatingHands/analyzer.totalPressed:.2f}%"
         left, right = analyzer.getLeftRightPercent()
         self.leftRightHand["text"] = f"{left:.2f}%/{right:.2f}%"
-        self.collisions["text"] = f"{(analyzer.sameFinger/analyzer.totalPressed):.4f}%"
+        self.collisions["text"] = f"{(analyzer.collisions/analyzer.totalPressed):.4f}%"
 
 # control elements (save, open, ...)
 

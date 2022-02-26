@@ -1,3 +1,4 @@
+from optimizer import Optimizer
 from parsing import parseLayout
 from keyboard import Keyboard, Key, Symbol
 import sys 
@@ -61,6 +62,10 @@ def main(argv):
     analyzer.printResults()
     left, right =keyboard.leftRightHandPercent()
     print(f"Left hand: {left}%.   Right hand: {right}%.")
+    
+    
+    optimizer = Optimizer(analyzer)
+    optimizer.optimize(100)
     if GUI:
         app = App(analyzer)
         app.mainloop()

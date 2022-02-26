@@ -22,6 +22,21 @@ class Key:
             if not s in __o.symbols:
                 return False
         return True
+    def copy(self):
+        newKey = Key(self.row)
+        newKey.id         = self.id
+        newKey.position   = self.position
+        newKey.width      = self.width
+        newKey.hand       = self.hand
+        newKey.finger     = self.finger
+        newKey.effort     = self.effort
+        newKey.pressed    = 0
+        newKey.pressedPerc= 0
+        for s in self.symbols:
+            newS = s.copy()
+            newS.key = newKey
+            newKey.symbols.append(newS)
+        return newKey
 
     def parse(self, element):
         self.id         = int(element.find("id").text)
@@ -121,6 +136,13 @@ class Keyboard:
         self.symbols = []
         self.symboldict = {}
         self.layoutName = ""
+    
+    def copy(self):
+        newKB = Keyboard(self.name)
+        for k in self.keys:
+            newKB.addKey(k.copy())
+        newKB.layoutName = self.layoutName
+        return newKB
 
     def addKey(self,key:Key):
         if not key in self.keys:
@@ -224,6 +246,17 @@ class Symbol:
 
     def __eq__(self, __o: object) -> bool:
         return self.value == __o.value and self.layerName == __o.layerName
+
+    def copy(self):
+        newSymbol = Symbol()
+        newSymbol.value = self.value
+        newSymbol.layerEffort = self.layerEffort
+        newSymbol.layerShiftKey = self.layerShiftKey
+        newSymbol.key = self.key
+        newSymbol.additionalEffort = self.additionalEffort
+        newSymbol.layerName = self.layerName
+        return newSymbol
+
     def parse(self, element):
         self.value = element.attrib["value"]
         try: 
