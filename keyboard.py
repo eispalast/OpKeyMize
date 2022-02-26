@@ -100,6 +100,7 @@ class Key:
                     s = Symbol()
                     s.layerName = key
                     s.key = self
+                    self.symbols.append(s)
                 s.value = value
 
 class Keyboard:
