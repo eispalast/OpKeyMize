@@ -174,6 +174,7 @@ class KeyView(tk.Button):
         self["text"]=text
         self["bg"]=bg
         self["fg"]=fg
+        self["font"]=("Bahnschrift",9,"bold")
         self["width"]=width
         self["height"]=3
         self["relief"]="solid"
@@ -198,18 +199,39 @@ class KeyView(tk.Button):
         self["text"]=t
 
     def color_by_percent(self):
-        scaled_up = self.key.pressedPerc*800
-        if scaled_up< 50:
-            g = 230
-            r = int(scaled_up*230/50)
+        r = 13
+        g = 13
+        b = 13
+        percentage = self.key.pressedPerc*100
+        zones = [0.5,4,8,18]
+        # blue zone
+        if percentage < zones[0]:
+            b = 190
+            g = 177*(percentage/zones[0])+13
+        # green zone
+        elif percentage < zones[1]:
+            g = 190
+            b = 177*(1-(percentage-zones[0])/(zones[1]-zones[0]))+13
+        # yellow zone
+        elif percentage < zones[2]:
+            g = 190
+            r = 177*((percentage-zones[1])/(zones[2]-zones[1]))+13
+        # red zone
+        elif percentage < zones[3]:
+            r = 190
+            g =177*(1-(percentage-zones[2])/(zones[3]-zones[2]))+13
         else:
-            r = 230
-            g = int((100-scaled_up)*230/50)
-        #r = int(255*self.key.pressedPerc*6)
-        #g = 255-r
-        rhex= ("00"+hex(r)[2:].lstrip('x'))[-2:]
-        ghex= ("00"+hex(g)[2:].lstrip('x'))[-2:]
-        color=f"#{rhex}{ghex}2A"
+            r = 190
+            g = 0
+            b = 0
+        # r = int(r)
+        # g = int(g)
+        # b = int(b)
+
+        rhex= ("00"+hex(int(r))[2:].lstrip('x'))[-2:]
+        ghex= ("00"+hex(int(g))[2:].lstrip('x'))[-2:]
+        bhex= ("00"+hex(int(b))[2:].lstrip('x'))[-2:]
+        color=f"#{rhex}{ghex}{bhex}"
         #if self.key.pressedPerc < 0.01:
         #    color="#c4c4c4"
         self["bg"]=color
@@ -234,7 +256,7 @@ class KeyBoardRowView(tk.Canvas):
                 color = "#BBBBBB"
             #key=self.create_rectangle(placing_pos,5,size_factor*width+placing_pos,size_factor+5,fill=color)
             #key.place(y=10, x=placing_pos+10)
-            key=KeyView(self,text=k.id,bg=color,fg="white",width=int(size_factor*k.width),key=k)
+            key=KeyView(self,text=k.id,bg=color,fg="#FDFDFD",width=int(size_factor*k.width),key=k)
             key.place(x=placing_pos,y=10) 
             self.keys.append(key)  
             placing_pos += int(size_factor*10*k.width)+30
@@ -268,16 +290,3 @@ class KeyboardView(tk.Canvas):
             for k in row.keys:
                 k.color_by_percent()
 
-#if __name__ == "__main__":
-#    app = App()
-#    kbView = KeyboardView(app)
-#    keys=[]
-#    for i in range(5):
-#        k = Key(0)
-#        k.id=i
-#        k.width=1.0
-#        keys.append(k)
-#    kbView.addRow(keys,0)
-#    kbView.addRow(keys,1)
-#    #kbView.addRow([1.25,1,1,1,1,1],1)
-#    app.mainloop()
